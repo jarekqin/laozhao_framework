@@ -49,7 +49,7 @@ class NORTHTOSOUTHNETBUY(_SchemaBase,Base):
     SOUTHSELL = Column('south_sell', FLOAT, comment='南向净卖出')
     HKSHNET=Column('hk_sh_net',FLOAT,comment='港沪通净流入')
     HKSZNET = Column('hk_sz_net', FLOAT, comment='港深通净流入')
-    NORTHNET = Column('south_net', FLOAT, comment='南向净流入')
+    SOUTHNET = Column('south_net', FLOAT, comment='南向净流入')
 
 
 class SOUTHTONORTHNETBUY(_SchemaBase,Base):
