@@ -245,5 +245,5 @@ def get_1min_north_and_south_net_buy(save_type='csv', save_path=None):
 
 
 if __name__ == '__main__':
-    get_1min_north_and_south_in_flow_data('csv', 'I:\\老赵分析框架\\north_south_1min_data')
-    get_1min_north_and_south_net_buy('csv', 'I:\\老赵分析框架\\north_south_1min_data')
+    get_1min_north_and_south_in_flow_data('csv', 'E:\\老赵分析框架\\north_south_1min_data')
+    get_1min_north_and_south_net_buy('csv', 'E:\\老赵分析框架\\north_south_1min_data')
