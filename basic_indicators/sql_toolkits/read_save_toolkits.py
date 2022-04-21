@@ -48,7 +48,7 @@ def organise_df_and_save(read_file_path, table_name, picker_name='finance_databa
         print(e)
 
 
-def save_to_sql(df,table_name,con,index_col=False):
+def save_to_sql(df,table_name,con,index_col=True):
     try:
         df.to_sql(table_name.table_name(), schema=table_name.schema(), con=con, if_exists='append',
                        index=index_col)
