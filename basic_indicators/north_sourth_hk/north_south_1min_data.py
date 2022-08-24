@@ -11,10 +11,10 @@ from basic_indicators.sql_toolkits.read_save_toolkits import save_to_sql
 from basic_indicators.sql_toolkits.data_db import NORTHTOSOUTHINFLOW, NORTHTOSOUTHNETBUY, SOUTHTONORTHINFLOW, \
     SOUTHTONORTHNETBUY
 
+con = EnginePointer.picker('finance_database')
 
-con=EnginePointer.picker('finance_database')
 
-def get_1min_north_and_south_in_flow_data(save_type='csv', save_path=None,index_col=True):
+def get_1min_north_and_south_in_flow_data(save_type='csv', save_path=None, index_col=True):
     cookies = {
         'cowCookie': 'true',
         'qgqp_b_id': '970c2cb78038fab9a65a353ca1e23aa8',
@@ -119,13 +119,13 @@ def get_1min_north_and_south_in_flow_data(save_type='csv', save_path=None,index_
             s2n_df.to_excel(os.path.join(save_path, '%s_s2n.xlsx' % s2n_df.index.max().strftime('%Y-%m-%d')),
                             encoding='utf-8')
         elif save_type == 'sql':
-            save_to_sql(n2s_df,NORTHTOSOUTHINFLOW,con)
+            save_to_sql(n2s_df, NORTHTOSOUTHINFLOW, con)
             save_to_sql(s2n_df, SOUTHTONORTHINFLOW, con)
         else:
             raise TypeError('save_type only supports "csv/excel/sql"')
 
 
-def get_1min_north_and_south_net_buy(save_type='csv', save_path=None,index_col=True):
+def get_1min_north_and_south_net_buy(save_type='csv', save_path=None, index_col=True):
     cookies = {
         'cowCookie': 'true',
         'qgqp_b_id': '970c2cb78038fab9a65a353ca1e23aa8',
@@ -264,8 +264,25 @@ def get_1min_north_and_south_net_buy(save_type='csv', save_path=None,index_col=T
 
 
 if __name__ == '__main__':
-    get_1min_north_and_south_in_flow_data('csv', 'E:\\老赵分析框架\\north_south_1min_data')
-    get_1min_north_and_south_net_buy('csv', 'E:\\老赵分析框架\\north_south_1min_data')
-    get_1min_north_and_south_in_flow_data('sql', 'E:\\老赵分析框架\\north_south_1min_data')
-    get_1min_north_and_south_net_buy('sql', 'E:\\老赵分析框架\\north_south_1min_data')
+    import time
+    from datetime import datetime
 
+    # get_1min_north_and_south_in_flow_data('sql', 'E:\\老赵分析框架\\north_south_1min_data')
+    # get_1min_north_and_south_net_buy('sql', 'E:\\老赵分析框架\\north_south_1min_data')
+
+    while True:
+        if datetime.now().hour >= 15 and datetime.now().minute >= 0 and datetime.now().second >= 0:
+            get_1min_north_and_south_in_flow_data('sql', 'E:\\老赵分析框架\\north_south_1min_data')
+            get_1min_north_and_south_net_buy('sql', 'E:\\老赵分析框架\\north_south_1min_data')
+            break
+        elif (datetime.time().strftime('%H:%M') >= '11:30') and (datetime.time().strftime('%H:%M') <= '13:00'):
+            print('中午休盘中...')
+            time.sleep(2)
+        else:
+            get_1min_north_and_south_in_flow_data('csv', 'E:\\老赵分析框架\\north_south_1min_data')
+            get_1min_north_and_south_net_buy('csv', 'E:\\老赵分析框架\\north_south_1min_data')
+            print(datetime.now())
+            time.sleep(2)
+
+    # get_1min_north_and_south_in_flow_data('sql', 'E:\\老赵分析框架\\north_south_1min_data')
+    # get_1min_north_and_south_net_buy('sql', 'E:\\老赵分析框架\\north_south_1min_data')
