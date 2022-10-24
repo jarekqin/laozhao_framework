@@ -14,7 +14,7 @@ from basic_indicators.sql_toolkits.data_db import NORTHTOSOUTHINFLOW, NORTHTOSOU
 con = EnginePointer.picker('finance_database')
 
 
-def get_1min_north_and_south_in_flow_data(save_type='csv', save_path=None, index_col=True):
+def get_1min_north_and_south_in_flow_data(save_type='csv', save_path=None):
     cookies = {
         'cowCookie': 'true',
         'qgqp_b_id': '970c2cb78038fab9a65a353ca1e23aa8',
@@ -125,7 +125,7 @@ def get_1min_north_and_south_in_flow_data(save_type='csv', save_path=None, index
             raise TypeError('save_type only supports "csv/excel/sql"')
 
 
-def get_1min_north_and_south_net_buy(save_type='csv', save_path=None, index_col=True):
+def get_1min_north_and_south_net_buy(save_type='csv', save_path=None):
     cookies = {
         'cowCookie': 'true',
         'qgqp_b_id': '970c2cb78038fab9a65a353ca1e23aa8',
@@ -275,7 +275,7 @@ if __name__ == '__main__':
             get_1min_north_and_south_in_flow_data('sql', 'E:\\老赵分析框架\\north_south_1min_data')
             get_1min_north_and_south_net_buy('sql', 'E:\\老赵分析框架\\north_south_1min_data')
             break
-        elif (datetime.time().strftime('%H:%M') >= '11:30') and (datetime.time().strftime('%H:%M') <= '13:00'):
+        elif (datetime.now().strftime('%H:%M') >= '11:30') and (datetime.now().strftime('%H:%M') <= '13:00'):
             print('中午休盘中...')
             time.sleep(2)
         else:
