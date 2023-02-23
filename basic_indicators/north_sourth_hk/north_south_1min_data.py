@@ -267,6 +267,8 @@ if __name__ == '__main__':
     import time
     from datetime import datetime
 
+    # get_1min_north_and_south_in_flow_data('csv', 'E:\\老赵分析框架\\north_south_1min_data')
+    # get_1min_north_and_south_net_buy('csv', 'E:\\老赵分析框架\\north_south_1min_data')
     # get_1min_north_and_south_in_flow_data('sql', 'E:\\老赵分析框架\\north_south_1min_data')
     # get_1min_north_and_south_net_buy('sql', 'E:\\老赵分析框架\\north_south_1min_data')
 
@@ -284,5 +286,3 @@ if __name__ == '__main__':
             print(datetime.now())
             time.sleep(2)
 
-    # get_1min_north_and_south_in_flow_data('sql', 'E:\\老赵分析框架\\north_south_1min_data')
-    # get_1min_north_and_south_net_buy('sql', 'E:\\老赵分析框架\\north_south_1min_data')
