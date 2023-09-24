@@ -29,7 +29,7 @@ def company_size(start_date, end_date, save_path):
     start_date, end_date = pd.to_datetime(start_date).strftime('%Y-%m-%d'), pd.to_datetime(end_date).strftime(
         '%Y-%m-%d')
     # 全A市值
-    data = w.wsd("881001.WI", "mkt_cap_ard", f"{start_date}", f"{end_date}",, "unit=1;Currency=CNY")
+    data = w.wsd("881001.WI", "mkt_cap_ard", f"{start_date}", f"{end_date}", "unit=1;Currency=CNY")
     data1 = pd.DataFrame(np.transpose(data.Data), index=data.Times, columns=data.Codes)
     # 全A平均等权指数日成交额
     dataa = w.wsd("881001.WI", "amt", f"{start_date}", f"{end_date}", "unit=1")
