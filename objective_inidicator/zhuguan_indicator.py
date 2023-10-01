@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 # 全日成交额
 # w.wsd("881001.WI", "amt", "2023-07-14", "2023-08-12", "unit=1")
-def Wind_A_Index_30min(start_date, end_date, code='8841388.WI', Any='amt', save_path=none):
+def Wind_A_Index_30min(start_date, end_date, code='8841388.WI', Any='amt', save_path=None):
     if init:
         w.start()
     start_date, end_date = pd.to_datetime(start_date).strftime('%Y-%m-%d'), pd.to_datetime(end_date).strftime(
